@@ -1,0 +1,18 @@
+version: '2'
+
+#объявляем сеть
+networks:
+  network_name:
+    external:
+      name: network_name
+
+services:
+  api:
+    restart: unless-stopped # политика рестарта
+    build:
+      context: . # собираем образ из Dockerfile находящийся в одной папке с docker-compose.yml
+    container_name: api
+    ports:
+      - 80:80
+    networks:
+      - network_name
